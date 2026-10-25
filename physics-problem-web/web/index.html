@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="คลังโจทย์ฟิสิกส์ภาษาไทย อ่านสมการและรูปบนเว็บ ค้นหา สุ่ม และจัดชุดแบบฝึกหัดได้ฟรี">
+<title>Physics Problem Bank — คลังโจทย์ฟิสิกส์</title>
+<link rel="stylesheet" href="styles.css">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},startup:{typeset:false}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" id="mathjax-script"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">ข้ามไปที่โจทย์</a>
+<header><a class="brand" href="#"><span class="brand-icon">φ</span><span>PHYSICS<span class="brand-sub">PROBLEM BANK</span></span></a><nav aria-label="เมนูหลัก"><button class="nav-btn active" id="bank-tab">คลังโจทย์</button><button class="nav-btn" id="set-tab">ชุดของฉัน <span id="set-count">0</span></button><a href="https://github.com/pxtape/physics-problem" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main id="main">
+<section class="intro"><div><div class="eyebrow">OPEN PHYSICS · เรียนรู้ได้ทุกคน</div><h1>โจทย์ดี ๆ<br>เริ่มต้นความเข้าใจที่ดี</h1><p>พื้นที่ฝึกคิดฟิสิกส์ อ่านสมการและรูปได้ทันที<br class="desktop"> เลือกฝึกทีละข้อ หรือจัดชุดในแบบของคุณ</p><div class="intro-actions"><button class="primary" id="start">เริ่มฝึกโจทย์ <span>↗</span></button><button class="secondary" id="random-hero">⚄ สุ่มโจทย์ให้ฉัน</button></div></div><div class="orbit" aria-hidden="true"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div><div class="orbit-core">φ</div><span class="formula f1">F = ma</span><span class="formula f2">E = ½mv²</span><span class="orbit-note">A LITTLE PRACTICE.<br>A NEW PERSPECTIVE.</span></div></section>
+<section class="stats" aria-label="ข้อมูลคลัง"><div><strong id="total">—</strong><span>โจทย์ในคลัง</span></div><div><strong>LaTeX</strong><span>สมการอ่านได้บนเว็บ</span></div><div><strong>ฟรี</strong><span>ไม่ต้องสมัครสมาชิก</span></div><div><span class="status-dot"></span><span>ฉบับทดลอง · กำลังตรวจทาน</span></div></section>
+<section class="library" id="library"><div class="section-title"><div><div class="eyebrow" id="section-kicker">EXPLORE THE BANK</div><h2 id="section-title">คลังโจทย์</h2></div><button class="secondary compact" id="random">⚄ สุ่มจากผลการค้นหา</button></div>
+<div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="ค้นหาข้อความ รหัสโจทย์ หรือปีข้อสอบ" aria-label="ค้นหาโจทย์"></label><label class="filter"><span>หัวข้อ</span><select id="topic"><option value="">ทุกหัวข้อ</option></select></label><label class="filter"><span>แหล่งที่มา</span><select id="source"><option value="">ทุกแหล่งที่มา</option><option>สอวน</option><option>USO</option><option>IJSO</option><option value="unknown">ไม่ระบุ</option></select></label></div>
+<div class="results-bar"><p id="result-count" aria-live="polite">กำลังโหลดโจทย์…</p><label><input id="diagram-only" type="checkbox"> เฉพาะข้อที่มีรูป</label><button class="text-btn" id="reset">ล้างตัวกรอง</button></div>
+<div id="set-tools" hidden><p>ชุดนี้บันทึกไว้ในเบราว์เซอร์ของคุณ เลือกข้อจากคลังเพื่อเพิ่มได้</p><div><button class="secondary" id="print-set">พิมพ์แบบฝึกหัด</button><button class="secondary" id="export-set">ดาวน์โหลดชุด JSON</button><button class="text-btn" id="clear-set">ล้างชุด</button></div></div>
+<div class="notice" id="math-notice" hidden>โหลดตัวแสดงสมการไม่สำเร็จ ตรวจสอบอินเทอร์เน็ตแล้วรีเฟรชหน้า ข้อความ LaTeX ยังคงอ่านและคัดลอกได้</div>
+<div id="problems" class="problem-list"></div><button class="secondary load-more" id="load-more" hidden>แสดงโจทย์เพิ่ม</button>
+</section>
+<footer><div class="brand-footer">φ <strong>Physics Problem Bank</strong></div><p>ฝึกคิดอย่างอิสระ เติบโตไปกับฟิสิกส์</p><small>โจทย์ถอดจากสแกน ยังรอตรวจทานกับต้นฉบับ · ยังไม่มีเฉลยที่ยืนยันแล้ว</small></footer>
+</main>
+<dialog id="detail"><div class="dialog-top"><span id="detail-id"></span><button class="icon-btn" id="close-detail" aria-label="ปิดโจทย์">✕</button></div><div id="detail-content"></div><div class="dialog-bottom"><button class="secondary" id="copy-link">คัดลอกลิงก์ข้อนี้</button><button class="primary" id="detail-select">เพิ่มเข้าชุด</button></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="notice">กรุณาเปิด JavaScript เพื่อค้นหาและแสดงสมการในคลังโจทย์</p></noscript>
+</body></html>
