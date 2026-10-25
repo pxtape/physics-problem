@@ -3,7 +3,7 @@
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#34423a"/></marker></defs>
 <rect width="460" height="310" fill="white"/>
 <g stroke="#34423a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path d="M35 267H420"/><path d="M95 267V237H139" fill="#e9ece5"/>
+<path d="M35 267H420"/><path d="M95 267V237H139V267Z" fill="#e9ece5"/>
 <path d="M139 237V104" stroke-dasharray="5 5" stroke="#869087"/>
 <g transform="translate(176 250) rotate(20)">
 <ellipse rx="40" ry="12"/><path d="M-40 0V-190M40 0V-190"/><ellipse cy="-190" rx="40" ry="12"/>
