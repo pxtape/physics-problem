@@ -1,0 +1,5 @@
+\par\noindent\textbf{60.}\quad (IJSO รอบที่ 1 2557) แรง $A$ และแรง $B$ กระทำต่อวัตถุที่ตำแหน่ง $X$ ด้วยขนาดและทิศทางดังแสดงด้วยลูกศร ดังรูป ความเร่งของวัตถุมีทิศใกล้เคียงกับข้อใดมากที่สุด
+\begin{center}\begin{tikzpicture}[>=Stealth,scale=1]
+\coordinate (X) at (0,0);\draw[->,thick] (X)--(-.9,1.15) node[left]{$A$};\draw[->,thick] (X)--(1.55,1.35) node[right]{$B$};\node[below] at (X) {$X$};
+\begin{scope}[yshift=-1.5cm]\foreach \i/\dx/\dy in {1/-1/-.35,2/1/.4,3/-.3/-1,4/.35/1}{\pgfmathsetmacro{\xx}{(\i-1)*2.4-3.5}\node at (\xx-.5,0) {\i.};\draw[->,thick] (\xx,0)--++(\dx,\dy);}\end{scope}
+\end{tikzpicture}\end{center}\par\medskip

@@ -1,0 +1,15 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage{fontspec,amsmath,amssymb,tikz,enumitem}
+\setmainfont{FreeSerif}
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip=0pt plus 1pt
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\problem}[2]{\par\medskip\noindent\textbf{#1.}\quad #2\par}
+\newcommand{\choices}[4]{\begin{tabular}{@{}p{.46\linewidth}p{.46\linewidth}@{}}1. #1 & 2. #2\\3. #3 & 4. #4\end{tabular}\par}
+\begin{document}
+\begin{center}\Large โจทย์ฟิสิกส์ ข้อ 41--50\end{center}
+\smallskip
+\foreach \n in {41,...,50} {\input{problems/MEC-00\n.tex}}
+\end{document}

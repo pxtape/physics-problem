@@ -1,0 +1,1 @@
+Compile with: xelatex main.tex (twice). Files MEC-0021 through MEC-0030 are individually reusable. Handwritten notes from scans omitted. Verify transcription before distribution.
