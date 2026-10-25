@@ -1,0 +1,39 @@
+% id: PHY-0001
+% title: ปริมาตรน้ำที่เหลือในถังทรงกระบอกเอียง
+% camp: อื่น ๆ
+% topic: ของไหล
+% year: 2551
+% tags: สอวน., ม.5, ทรงกระบอก, ปริมาตร
+% origin: สอวน. ม.5 2551 · ข้อ 1 ในภาพที่ผู้ใช้ส่ง
+% review: ถอดจากภาพแล้ว · รอตรวจทาน
+% diagram: PHY-0001.svg
+% scan: sources/PHY-0001-0002-original.png
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,fontspec,polyglossia,tikz}
+\setdefaultlanguage{thai}
+\setmainfont{Noto Serif Thai}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\textbf{ข้อ 1.} (สอวน. ม.5 2551)
+ถังน้ำทรงกระบอกรัศมี $R$ ความสูง $H$ ใส่น้ำจนเต็มเมื่อตั้งดิ่ง
+จากนั้นจึงจับเอียงทำมุม $\theta$ กับแนวดิ่ง จะเหลือน้ำในถังเป็นปริมาตรเท่าใด
+
+% รูปวาดใหม่ตามภาพต้นฉบับ ไม่ได้ระบุสเกลหรือความสูงของน้ำเพิ่ม
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+  \draw (-1.3,0) -- (4.5,0);
+  \node[above] at (3.7,0) {พื้นระดับ};
+  \filldraw[fill=gray!20] (-0.4,0) rectangle (0.25,0.5);
+  \draw[dashed] (0.25,0.5) -- (0.25,2.7);
+  \draw[->] (-1.05,2.35) -- (-1.05,1.65) node[right,midway] {$g$};
+  \begin{scope}[shift={(0.85,0.25)},rotate=-20]
+    \draw (0,0) ellipse (0.65 and 0.21);
+    \draw (-0.65,0) -- (-0.65,3.1);
+    \draw (0.65,0) -- (0.65,3.1);
+    \draw (0,3.1) ellipse (0.65 and 0.21);
+    \draw[<->] (0.93,0) -- (0.93,3.1) node[right,midway] {$H$};
+    \draw[->] (0,3.1) -- (0.65,3.1) node[above right] {$R$};
+  \end{scope}
+  \draw (0.25,1.3) arc[start angle=90,end angle=70,radius=0.8];
+  \node at (0.43,1.55) {$\theta$};
+\end{tikzpicture}
+\end{document}

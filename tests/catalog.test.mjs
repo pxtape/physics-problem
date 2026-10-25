@@ -35,3 +35,19 @@ test('bundled KaTeX renders supported equation environments', () => {
     assert.ok(result.html.includes('katex-display'), env);
   }
 });
+test('registered diagram renders only safe repository asset paths', () => {
+  const tex = '\\begin{tikzpicture}\\draw (0,0)--(1,1);\\end{tikzpicture}';
+  const valid = previewHTML(tex, null, { file: 'content/unspecified/fluids/PHY-0001.tex', diagram: 'PHY-0001.svg' });
+  assert.ok(valid.html.includes('src="content/unspecified/fluids/PHY-0001.svg"')); assert.deepEqual(valid.warnings, []);
+  for (const diagram of ['../../secret.svg', 'https://example.com/image.svg', '\" onerror=\"alert(1)', 'file.png']) {
+    const invalid = previewHTML(tex, null, { file: 'content/unspecified/fluids/PHY-0001.tex', diagram });
+    assert.ok(!invalid.html.includes('<img')); assert.equal(invalid.warnings.length, 1);
+  }
+});
+test('sample transcriptions keep provenance and source values', () => {
+  const one = parseProblem(readFileSync(new URL('../content/unspecified/fluids/PHY-0001.tex', import.meta.url), 'utf8'));
+  const two = parseProblem(readFileSync(new URL('../content/unspecified/geometry/PHY-0002.tex', import.meta.url), 'utf8'));
+  assert.equal(one.camp, 'อื่น ๆ'); assert.equal(one.year, '2551'); assert.ok(one.origin.includes('ม.5'));
+  assert.ok(two.origin.includes('IJSO รอบที่ 2 2554')); assert.ok(two.source.includes('$6370$')); assert.ok(two.source.includes('$2$'));
+  assert.ok(one.review.includes('รอตรวจทาน')); assert.ok(two.review.includes('รอตรวจทาน'));
+});

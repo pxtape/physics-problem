@@ -2,6 +2,7 @@ import { camps, topics, parseProblem } from './lib/catalog.mjs';
 import { previewHTML } from './lib/preview.mjs';
 const $ = id => document.getElementById(id);
 const KEY = 'physics-archive-drafts-v1';
+const yearsOf = p => p.year.split(/[\s/,;]+/).filter(Boolean);
 let catalog = [], drafts = [], mode = 'all', active = null;
 const template = `% id: CAMP1-MEC-001
 % title: การเคลื่อนที่บนพื้นราบ
@@ -46,7 +47,7 @@ function update() {
   const records = mode === 'drafts' ? drafts : catalog;
   options('camp', [...camps, ...records.map(p => p.camp)], 'ทุกค่าย');
   options('topic', [...topics, ...records.map(p => p.topic)], 'ทุกเนื้อหา');
-  options('year', records.map(p => p.year), 'ทุกปี');
+  options('year', records.flatMap(yearsOf), 'ทุกปี');
   $('camp-nav').replaceChildren();
   for (const camp of [...new Set([...camps, ...catalog.map(p=>p.camp)])]) {
     const button = el('button', 'side-nav' + (mode === 'all' && $('camp').value === camp ? ' active' : ''));
@@ -62,7 +63,7 @@ function render() {
   $('list-title').textContent = mode === 'drafts' ? 'แบบร่างในเครื่อง' : $('camp').value || 'โจทย์ทั้งหมด';
   const query = $('search').value.trim().toLocaleLowerCase();
   const records = mode === 'drafts' ? drafts : catalog;
-  const filtered = records.filter(p => (!$('camp').value || p.camp === $('camp').value) && (!$('topic').value || p.topic === $('topic').value) && (!$('year').value || p.year === $('year').value) && [p.id, p.title, p.camp, p.topic, p.year, ...p.tags, p.source].join(' ').toLocaleLowerCase().includes(query));
+  const filtered = records.filter(p => (!$('camp').value || p.camp === $('camp').value) && (!$('topic').value || p.topic === $('topic').value) && (!$('year').value || yearsOf(p).includes($('year').value)) && [p.id, p.title, p.camp, p.topic, p.year, ...p.tags, p.source].join(' ').toLocaleLowerCase().includes(query));
   $('result-count').textContent = `${filtered.length} / ${records.length} ข้อ`;
   const list = $('problem-list'); list.replaceChildren();
   if (!filtered.length) {
@@ -78,7 +79,7 @@ function render() {
     const row = el('article', 'problem-row');
     const main = el('div', 'problem-main'); main.append(el('span', 'problem-code', p.id), el('h3', '', p.title));
     const meta = el('div', 'problem-meta');
-    for (const text of [p.camp, p.topic, p.year, ...p.tags]) if (text) meta.append(el('span', '', text));
+    for (const text of [p.camp, p.topic, p.year, ...p.tags, p.review]) if (text) meta.append(el('span', '', text));
     if (mode === 'drafts') meta.append(el('span', '', 'แบบร่าง · เฉพาะเครื่องนี้'));
     main.append(meta); const button = el('button', 'secondary', 'เปิดโจทย์ ↗'); button.onclick = () => openEditor(p);
     row.append(el('div', 'file-symbol', '.tex'), main, button);
@@ -96,11 +97,18 @@ function openEditor(p = null) {
 }
 function preview() {
   const target = $('preview'); target.replaceChildren();
+  let problem;
   try {
     const p = parseProblem($('source').value);
+    problem = p;
     target.append(el('div', 'preview-meta', `${p.id} · ${p.camp} / ${p.topic}${p.year ? ' / ' + p.year : ''}`), el('h3', '', p.title));
+    if (p.origin) target.append(el('p', 'problem-origin', `แหล่งที่มา: ${p.origin}`));
+    if (p.review) target.append(el('p', 'problem-origin', p.review));
+    if (/^sources\/[a-zA-Z0-9_-]+\.png$/.test(p.scan || '')) {
+      const link = el('a', 'scan-link', 'ดูภาพต้นฉบับ ↗'); link.href = p.scan; link.target = '_blank'; link.rel = 'noopener'; target.append(link);
+    }
   } catch (error) { target.append(el('div', 'unsupported', error.message)); }
-  const rendered = previewHTML($('source').value, window.katex);
+  const rendered = previewHTML($('source').value, window.katex, {file: active?.file || catalog.find(p=>p.id===problem?.id)?.file, diagram: problem?.diagram});
   const content = el('div'); content.innerHTML = rendered.html; target.append(content);
   for (const warning of rendered.warnings) target.append(el('div', 'unsupported', warning));
 }

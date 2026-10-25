@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="310" viewBox="0 0 460 310" role="img" aria-labelledby="title desc">
+<title id="title">ถังทรงกระบอกเอียงจากแนวดิ่ง</title><desc id="desc">ถังรัศมี R สูง H เอียงทำมุม theta กับแนวดิ่ง บนพื้นระดับ มีลูกศร g ชี้ลง รูปวาดใหม่ตามต้นฉบับ ไม่ได้แสดงตามสเกล</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#34423a"/></marker></defs>
+<rect width="460" height="310" fill="white"/>
+<g stroke="#34423a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M35 267H420"/><path d="M95 267V237H139" fill="#e9ece5"/>
+<path d="M139 237V104" stroke-dasharray="5 5" stroke="#869087"/>
+<g transform="translate(176 250) rotate(20)">
+<ellipse rx="40" ry="12"/><path d="M-40 0V-190M40 0V-190"/><ellipse cy="-190" rx="40" ry="12"/>
+<path d="M57 -2V-187" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<path d="M0 -190H38" marker-end="url(#arrow)"/>
+</g>
+<path d="M68 122V173" marker-end="url(#arrow)"/>
+<path d="M139 194Q147 193 154 198"/>
+</g>
+<g fill="#34423a" font-family="Georgia,serif" font-size="23" font-style="italic"><text x="79" y="153">g</text><text x="144" y="188">θ</text><text x="275" y="161">H</text><text x="287" y="70">R</text></g>
+<text x="320" y="256" font-family="sans-serif" font-size="17" fill="#34423a">พื้นระดับ</text>
+<text x="35" y="298" font-family="sans-serif" font-size="11" fill="#899184">รูปวาดใหม่ตามต้นฉบับ · ไม่ได้แสดงตามสเกล</text>
+</svg>

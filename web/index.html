@@ -39,7 +39,7 @@
   <div class="dialog-head"><div><div class="eyebrow">PROBLEM WORKSPACE</div><h2 id="editor-title">เพิ่มโจทย์ LaTeX</h2></div><button type="button" class="icon-button" id="close-editor" aria-label="ปิด">✕</button></div>
   <div class="editor-actions"><label class="secondary import-label">↑ นำเข้าไฟล์ .tex<input type="file" id="import-file" accept=".tex,text/plain" hidden></label><button class="quiet" type="button" id="template-button">ใช้แม่แบบโจทย์</button><span id="file-origin"></span></div>
   <div class="editor-grid"><section class="source-panel"><div class="panel-heading"><span>ต้นฉบับ LaTeX</span><span>.tex</span></div><textarea id="source" spellcheck="false" aria-label="ต้นฉบับ LaTeX"></textarea></section><section class="preview-panel"><div class="panel-heading"><span>ตัวอย่างโจทย์</span><span class="preview-badge">QUICK PREVIEW</span></div><div id="preview"></div></section></div>
-  <p class="preview-note">ตัวอย่างแสดงข้อความและสมการด้วย KaTeX ไม่ใช่ PDF compiler · ไม่รองรับ TikZ, รูปภาพ และแพ็กเกจ LaTeX ทั้งหมด</p>
+  <p class="preview-note">ตัวอย่างแสดงข้อความและสมการด้วย KaTeX ไม่ใช่ PDF compiler · TikZ ใช้รูป SVG ประกอบที่เตรียมไว้ · ไม่รองรับแพ็กเกจ LaTeX ทั้งหมด</p>
   <p id="editor-message" role="status"></p>
   <div class="dialog-foot"><span>แบบร่างเก็บเฉพาะเบราว์เซอร์นี้ · ดาวน์โหลดไฟล์แล้วเพิ่มเข้า Git เพื่อเผยแพร่</span><div><button class="secondary" type="button" id="download">↓ ดาวน์โหลด .tex</button><button class="primary" type="submit">บันทึกแบบร่าง</button></div></div>
  </form>
@@ -48,3 +48,4 @@
 <div id="toast" role="status"></div>
 <noscript>กรุณาเปิด JavaScript เพื่อใช้งานคลังโจทย์</noscript>
 </body></html>
+
