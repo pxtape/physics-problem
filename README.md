@@ -1,57 +1,73 @@
-# Physics Problem Bank
+# Physics Archive · คลังโจทย์ฟิสิกส์
 
-คลังโจทย์ฟิสิกส์ สอวน. ข้อ 1–60 ที่ถอดเป็น LaTeX จากเอกสารสแกน
+คลังโจทย์แบบ **หนึ่งโจทย์ต่อหนึ่งไฟล์ `.tex`** แยกตามค่าย เนื้อหา ปี และแท็ก ค้นหาข้อความ ดูต้นฉบับ ทดลองแก้ไข และดูตัวอย่างสมการด้วย KaTeX ได้ เริ่มต้นคลังว่างตามคำขอเจ้าของ repo ข้อมูลเดิมย้อนดูได้ในประวัติ Git ก่อน commit เปลี่ยนคลังนี้
 
-- `batches/01-10` ถึง `batches/51-60`: ต้นฉบับ LaTeX แต่ละชุด
-- `pdf/`: PDF ที่คอมไพล์ไว้สำหรับตรวจทาน
-- ใช้ XeLaTeX เมื่อคอมไพล์ภาษาไทย
+## เปิดในเครื่อง
 
-**สำคัญ:** ไฟล์แต่ละชุดมี preamble และรูปแบบ macro ไม่เหมือนกันทั้งหมด จึงยังไม่ควรนำ `.tex` ทุกชุดมารวมด้วย `\input` โดยตรง ต้องปรับให้ใช้ preamble กลางก่อน
+ต้องมี Node.js 22 ขึ้นไป ไม่มี dependency ที่ต้องติดตั้ง:
 
-**สำคัญ:** โจทย์ถอดจากภาพสแกนและยังต้องตรวจทานกับต้นฉบับก่อนนำไปใช้สอนจริง
-
-ข้อ 1–10 อยู่รวมใน `batches/01-10/main.tex`; ข้อ 11–60 แยกเป็นไฟล์รายข้อ
-
-## เว็บคลังโจทย์
-
-เว็บไซต์อยู่ใน `web/` อ่านโจทย์ 60 ข้อบนหน้าเว็บด้วย MathJax และรูป SVG จาก TikZ
-รองรับค้นหา กรองหัวข้อ/แหล่งที่มา สุ่มข้อ เปิดลิงก์รายข้อ เลือกชุดใน localStorage
-ดาวน์โหลดชุด JSON และพิมพ์แบบฝึกหัด (เลือก Save as PDF ในหน้าพิมพ์ได้)
-ไม่มีระบบบัญชีหรือการเก็บข้อมูลนักเรียนบนเซิร์ฟเวอร์ ยังไม่มีเฉลยหรือระบบให้คะแนน mock test
-
-### เปิดเว็บผ่าน GitHub Pages
-
-1. Settings → Pages → Build and deployment → Source: **GitHub Actions**
-2. Actions → **Deploy Physics Problem Bank** → Run workflow → main
-3. เมื่อ deploy ผ่าน กด URL ใน job `deploy` หรือ Visit site ใน Settings → Pages
-4. URL ปกติ: https://pxtape.github.io/physics-problem/
-
-workflow จะรันอัตโนมัติเมื่อแก้โค้ดเว็บหรือต้นฉบับใน main
-repo เป็น private: GitHub Pages ต้องใช้แผน GitHub ที่รองรับ Pages สำหรับ private repository
-ถ้าบัญชีไม่รองรับ ให้เลือกโฮสต์ static อื่น หรือพิจารณาเปลี่ยน visibility ด้วยตนเอง
-การมี workflow อย่างเดียวไม่ได้แปลว่าเปิด Pages สำเร็จแล้ว
-
-### พัฒนาและอัปเดตโจทย์
-
-```sh
-python3 scripts/build_web.py --diagrams
-python3 -m unittest discover -s tests
-python3 -m http.server 8000 --directory web
+```powershell
+npm run dev
 ```
 
-เปิด http://localhost:8000 การสร้างรูปต้องใช้ XeLaTeX, TikZ, standalone, Noto Serif Thai และ pdftocairo
-workflow ติดตั้งเครื่องมือเหล่านี้ให้ อัปเดต LaTeX ใน `batches/` แล้ว push main เพื่อสร้างข้อมูลและรูปใหม่
-ถ้ารูปไม่เปลี่ยน ใช้ `python3 scripts/build_web.py` เพื่อสร้างข้อมูลจาก SVG ที่มีอยู่
-MathJax 3.2.2 โหลดจาก jsDelivr จึงต้องมีอินเทอร์เน็ตในการจัดสมการครั้งแรก
-หากโหลดไม่ได้ เว็บแจ้งข้อผิดพลาดและคงข้อความ LaTeX ไว้ให้อ่าน
+เปิด http://127.0.0.1:4173 — คำสั่งนี้ build ก่อนเปิด server ถ้าแก้ไฟล์ใน `content/` หรือ source เว็บ ให้หยุดแล้วรันใหม่
 
-### โครงสร้างข้อมูลและการตรวจทาน
+```powershell
+npm test
+npm run build
+```
 
-`web/problems.json` เป็นผล build จาก LaTeX เดิม เก็บรหัส, เลขข้อ, หัวข้อ, แหล่งที่มา,
-สถานะตรวจทาน, HTML, LaTeX และ path ต้นฉบับ หัวข้อเป็นการจัดกลุ่มเบื้องต้น ยังต้องตรวจทาน
-อย่าแก้ไฟล์ JSON โดยตรงเพราะ build จะเขียนทับ
-ต้นฉบับข้อ 3 ระบุว่ากราฟคำแนะนำยังไม่ได้วาดใหม่ เว็บคงหมายเหตุเดิมไว้
+ผลลัพธ์เว็บอยู่ใน `dist/` เปิดผ่าน HTTP server ไม่ใช่ double-click `index.html` ตัวแสดงสมการและฟอนต์ KaTeX รวมใน repo แล้ว ส่วนฟอนต์ UI จาก Google Fonts มี sans-serif สำรอง
 
-ก่อนเพิ่มโจทย์แปล/จากหนังสือ ควรเพิ่ม metadata ผู้แต่ง แหล่งอ้างอิง ภาษาเดิม ผู้แปล และสิทธิ์เผยแพร่
-การอ้างอิงแหล่งที่มาไม่เท่ากับได้รับอนุญาตให้เผยแพร่ซ้ำ โค้ดนี้ไม่ได้กำหนด license ให้เนื้อหาเดิม
-ระบบเพิ่มโจทย์ออนไลน์ ฐานข้อมูล และ mock test เป็นงานต่อยอด ยังไม่ได้เปิดใช้งานในรุ่นนี้
+## เพิ่มโจทย์ถาวรทีละข้อ
+
+1. คัดลอก `templates/problem.tex` เป็น `content/camp-1/mechanics/CAMP1-MEC-001.tex` (ใช้โฟลเดอร์ใดก็ได้ภายใน `content/`)
+2. ระบุ metadata ใน comment ด้านบนไฟล์:
+
+```tex
+% id: CAMP1-MEC-001
+% title: การเคลื่อนที่บนพื้นราบ
+% camp: ค่าย 1
+% topic: กลศาสตร์
+% year: 2569
+% tags: กฎของนิวตัน, แรง
+```
+
+3. ใส่โจทย์ระหว่าง `\begin{document}` และ `\end{document}` หรือใช้ fragment โดยตรงก็ได้
+4. รัน `npm test` และ `npm run build` แล้ว commit/push เข้า `main`
+
+`id`, `title`, `camp`, `topic` จำเป็นต้องมี ส่วนปีและแท็กเว้นว่างได้ รหัสต้องไม่ซ้ำกัน ใช้ภาษาอังกฤษ ตัวเลข `-` และ `_` ไม่เกิน 80 ตัว ระบบจะหยุด build หาก metadata ไม่ครบหรือรหัสซ้ำ ค่าย/หัวข้อใหม่จะปรากฏในตัวกรองอัตโนมัติ ไม่ต้องแก้ JSON ด้วยมือ
+
+ชื่อไฟล์แนะนำให้ตรงกับรหัสโจทย์ เก็บรูปประกอบข้างไฟล์ได้ แต่ quick preview ยังไม่แสดงรูป
+
+## การใช้หน้าเพิ่มโจทย์
+
+- นำเข้า `.tex` หรือเริ่มจากแม่แบบเพื่อดูข้อความและสมการ พร้อมแจ้งข้อผิดพลาดสมการ
+- **บันทึกแบบร่าง** เก็บใน localStorage เฉพาะเบราว์เซอร์นี้ ไม่ใช่การเขียนเข้า GitHub และอาจหายได้เมื่อผู้ใช้ล้างข้อมูลเบราว์เซอร์
+- **ดาวน์โหลด .tex** เพื่อเก็บต้นฉบับและเพิ่มเข้า `content/` แล้ว commit/push
+- เปิดโจทย์ตรง ๆ ได้ด้วย `?id=CAMP1-MEC-001` หลังมีไฟล์นั้นในคลัง
+
+เว็บเป็น static site ไม่มี token ไม่มี API เขียน GitHub จากเบราว์เซอร์ ข้อมูลที่ commit เข้า public repo จะอ่านได้โดยบุคคลทั่วไป
+
+## ขอบเขตตัวอย่าง LaTeX
+
+รองรับข้อความไทย สมการ `$...$`, `$$...$$`, `\(...\)`, `\[...\]`, equation/align/gather แบบพื้นฐาน ตัวหนา/เอียง และรายการแบบง่าย **ไม่ใช่การ compile PDF จริง** ไม่รองรับแพ็กเกจทั้งหมด macro ที่นิยามเอง TikZ รูปภาพ ตาราง การอ้างอิง และ layout ของเอกสารเต็ม คำสั่งที่ไม่รองรับจะแสดงต้นฉบับ/คำเตือน
+
+แม่แบบเอกสารเต็มใช้ XeLaTeX และต้องติดตั้งฟอนต์ Noto Serif Thai ถ้าต้องการ PDF จริงให้นำไฟล์ไป compile ด้วย XeLaTeX/Overleaf
+
+## GitHub Pages
+
+workflow `.github/workflows/pages.yml` จะทดสอบ build แล้ว deploy เมื่อ push `main` ต้องตั้ง **Settings → Pages → Source → GitHub Actions** ของ repo ก่อน URL ปกติคือ https://pxtape.github.io/physics-problem/ การมี workflow ใน repo เพียงอย่างเดียวยังไม่ยืนยันว่า deploy สำเร็จ
+
+## โครงสร้าง
+
+```text
+content/                  ไฟล์โจทย์จริง (เริ่มต้นว่าง)
+templates/problem.tex     แม่แบบสำหรับโจทย์ใหม่
+web/                      หน้าเว็บและ KaTeX ที่รวมไว้ใน repo
+lib/                      metadata parser และ quick preview
+scripts/build.mjs         รวม metadata จากไฟล์ .tex เป็น catalog.json
+tests/                    ตรวจ metadata และความปลอดภัยของ preview
+```
+
+KaTeX ใช้ MIT License ดู `web/vendor/KATEX-LICENSE`
