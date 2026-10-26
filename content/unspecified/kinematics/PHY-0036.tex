@@ -1,0 +1,39 @@
+% id: PHY-0036
+% title: เวลาเมื่ออัตราเร็วขาลงเป็นครึ่งหนึ่งของอัตราเร็วต้น
+% camp: อื่น ๆ
+% topic: การเคลื่อนที่แนวตรง
+% year: 2553
+% tags: IJSO, รอบที่ 1, การโยนในแนวดิ่ง, กราฟความเร็ว–เวลา
+% origin: IJSO รอบที่ 1 2553 · ข้อ 36 ในภาพที่ผู้ใช้ส่ง
+% review: ถอดจากภาพแล้ว · รอตรวจทาน
+% diagram: PHY-0036.svg
+% scan: sources/PHY-0036-original.png
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,fontspec,polyglossia,tikz}
+\setdefaultlanguage{thai}
+\setmainfont{Noto Serif Thai}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\textbf{ข้อ 36.} (IJSO รอบที่ 1 2553)
+อนุภาคหนึ่งถูกโยนขึ้นในแนวดิ่งภายใต้สนามโน้มถ่วง $g$ กราฟความเร็ว–เวลาเป็นดังรูป (ทิศขึ้นแทนด้วยเครื่องหมายบวก) ตอนขาลง เมื่ออนุภาคมีอัตราเร็วครึ่งหนึ่งของอัตราเร็วต้น เวลาผ่านไปเท่าใดนับจากเริ่มโยน
+
+\begin{tikzpicture}[x=1.24533cm,y=0.52456cm,>=Stealth]
+\draw[->,line width=.7pt] (-0.18,0) -- (5,0);
+\draw[->,line width=.7pt] (0,-2.8) -- (0,4.8);
+\draw[line width=.7pt] (2,-0.1271) -- (2,0.1271);
+\node[anchor=center] at (2,-0.5084) {$T$};
+\node[anchor=east] at (-0.0857,-0.4067) {0};
+\node[anchor=west] at (5.0857,-0.0508) {เวลา};
+\node[anchor=west] at (-0.0857,5.2067) {ความเร็ว};
+\draw[line width=.7pt] (0,3) -- (2,0) -- (3.6,-2.4);
+\end{tikzpicture}
+
+
+1. $\dfrac{T}{2}$
+
+2. $T\left(1+\dfrac{1}{\sqrt{2}}\right)$
+
+3. $\dfrac{3T}{2}$
+
+4. $T\left(2-\dfrac{1}{\sqrt{2}}\right)$
+\end{document}

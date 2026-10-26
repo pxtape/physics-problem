@@ -1,0 +1,49 @@
+% id: PHY-0035
+% title: ขนาดการกระจัดจากกราฟความเร็ว–เวลา
+% camp: อื่น ๆ
+% topic: การเคลื่อนที่แนวตรง
+% year: 2557
+% tags: IJSO, รอบที่ 1, การกระจัด, กราฟความเร็ว–เวลา
+% origin: IJSO รอบที่ 1 2557 · ข้อ 35 ในภาพที่ผู้ใช้ส่ง
+% review: ถอดจากภาพแล้ว · รอตรวจทาน
+% diagram: PHY-0035.svg
+% scan: sources/PHY-0035-original.png
+% transcription-note: ต้นฉบับวงตัวเลือก 1 ไว้ แต่ไม่ได้บันทึกเป็นเฉลยที่ตรวจสอบแล้ว จุดต่ำสุดในกราฟไม่มีตัวเลขกำกับ จึงไม่เพิ่มป้ายค่าที่จุดนั้น
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,fontspec,polyglossia,tikz}
+\setdefaultlanguage{thai}
+\setmainfont{Noto Serif Thai}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\textbf{ข้อ 35.} (IJSO รอบที่ 1 2557)
+วัตถุชิ้นหนึ่งเคลื่อนที่ในหนึ่งมิติ ด้วยความเร็วที่เวลาต่าง ๆ ดังกราฟ โดยตอนแรกวัตถุมีความเร็ว $12\ \mathrm{m/s}$ และเมื่อเวลาผ่านไป $10\ \mathrm{s}$ วัตถุมีความเร็ว $18\ \mathrm{m/s}$ จงหาขนาดของการกระจัดของวัตถุในช่วงเวลา $10\ \mathrm{s}$ นี้
+
+\begin{tikzpicture}[x=0.47897cm,y=0.11390cm,>=Stealth]
+\draw[dashed,line width=.4pt] (0,18) -- (10,18);
+\draw[dashed,line width=.4pt] (10,0) -- (10,18);
+\draw[->,line width=.7pt] (-0.18,0) -- (13,0);
+\draw[->,line width=.7pt] (0,-12) -- (0,23);
+\draw[line width=.7pt] (4,-0.5853) -- (4,0.5853);
+\node[anchor=center] at (4,-2.3411) {4};
+\draw[line width=.7pt] (8,-0.5853) -- (8,0.5853);
+\node[anchor=center] at (8,-2.3411) {8};
+\draw[line width=.7pt] (10,-0.5853) -- (10,0.5853);
+\node[anchor=center] at (10,-2.3411) {10};
+\draw[line width=.7pt] (-0.1392,12) -- (0,12);
+\node[anchor=east] at (-0.334,12) {12};
+\draw[line width=.7pt] (-0.1392,18) -- (0,18);
+\node[anchor=east] at (-0.334,18) {18};
+\node[anchor=east] at (-0.2227,-1.8729) {0};
+\node[anchor=west] at (13.2227,-0.2341) {$t$ (s)};
+\node[anchor=west] at (-0.2227,24.8729) {$v$ (m/s)};
+\draw[line width=.7pt] (0,12) -- (7,-9) -- (10,18);
+\end{tikzpicture}
+
+1. $24\ \mathrm{m}$
+
+2. $36\ \mathrm{m}$
+
+3. $48\ \mathrm{m}$
+
+4. $60\ \mathrm{m}$
+\end{document}
